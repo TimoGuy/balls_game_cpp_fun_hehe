@@ -1,5 +1,8 @@
-# VSCode cache file.
+# VSCode cache folder.
 .vscode/
 
 # CMake build folder.
 [Bb]uild/
+
+# CMake VSCode ext cache folder.
+.cache/
