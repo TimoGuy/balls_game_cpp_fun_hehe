@@ -20,9 +20,22 @@ if(MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
 endif()
 
+# Dependencies.
+set(jolt_physics_INCLUDE_DIR
+    ${CMAKE_CURRENT_SOURCE_DIR}/third_party/JoltPhysics)
+
+add_subdirectory(third_party/JoltPhysics/Build)
+
 # Executable build.
 add_executable(${PROJECT_NAME}
     ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
+
+target_include_directories(${PROJECT_NAME}
+    PRIVATE
+        ${jolt_physics_INCLUDE_DIR})
+
+target_link_libraries(${PROJECT_NAME}
+    Jolt)
 
 # Set this project as Visual Studio startup project.
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
