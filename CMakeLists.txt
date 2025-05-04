@@ -21,9 +21,15 @@ if(MSVC)
 endif()
 
 # Dependencies.
-set(jolt_physics_INCLUDE_DIR
+set(DEPENDENCY_INCLUDE_DIRS
+    ${CMAKE_CURRENT_SOURCE_DIR}/third_party/fastgltf/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/third_party/fmt/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/third_party/glfw/include
     ${CMAKE_CURRENT_SOURCE_DIR}/third_party/JoltPhysics)
 
+add_subdirectory(third_party/fastgltf)
+add_subdirectory(third_party/fmt)
+add_subdirectory(third_party/glfw)
 add_subdirectory(third_party/JoltPhysics/Build)
 
 # Executable build.
@@ -32,9 +38,13 @@ add_executable(${PROJECT_NAME}
 
 target_include_directories(${PROJECT_NAME}
     PRIVATE
-        ${jolt_physics_INCLUDE_DIR})
+        ${DEPENDENCY_INCLUDE_DIRS})
 
 target_link_libraries(${PROJECT_NAME}
+    fastgltf
+    fmt::fmt
+    glfw
+    ${GLFW_LIBRARIES}
     Jolt)
 
 # Set this project as Visual Studio startup project.

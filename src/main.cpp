@@ -1,9 +1,9 @@
 #include <cstdint>
-#include <iostream>
+#include <fmt/base.h>
 
 
 int32_t main()
 {
-    std::cout << "Hello worldie!" << std::endl;
+    fmt::println("Hello, {}", "Bootiful Warld!");
     return 0;
 }
